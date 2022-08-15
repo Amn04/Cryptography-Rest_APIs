@@ -2,16 +2,23 @@ import json
 from base64 import b64decode
 from Crypto.Cipher import AES
 
-# We assume that the key was securely shared beforehand
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--nonce', type=str, required=True)
+parser.add_argument('--header', type=str, required=True)
+parser.add_argument('--text', type=str, required=True)
+parser.add_argument('--tag', type=str, required=True)
+args = parser.parse_args()
+
 try:
-    json_input='''{"nonce": "t5W6Djt7DbiLAGg=", "header": "aGVhZGVy", "ciphertext": "Zw7/kU6V", "tag": "MJ6z0dpxo86Am5+096j8lg=="}'''
-    b64 = json.loads(json_input)
-    key=b'#\x03\x01v\xddq\xbe1n\x05\xc1\xe1y\x8a+\x8c'
+    json_input=f'''{{"nonce": {args.nonce}, "header": {args.header}, "ciphertext": {args.text}, "tag": {args.text}}}'''
+    key=b'P\xb31eZ"8\x15Mj\xf3\xceU\xb8\xe0\xa2'
     json_k = [ 'nonce', 'header', 'ciphertext', 'tag' ]
-    jv = {k:b64decode(b64[k]) for k in json_k}
-    cipher = AES.new(key, AES.MODE_CCM, nonce=jv['nonce'])
-    cipher.update(jv['header'])
-    plaintext = cipher.decrypt_and_verify(jv['ciphertext'], jv['tag'])
+
+    cipher = AES.new(key, AES.MODE_CCM, nonce=b64decode(args.nonce))
+    cipher.update(b64decode(args.header))
+    plaintext = cipher.decrypt_and_verify(b64decode(args.text), b64decode(args.tag))
     print("The message was: ",plaintext)
 except Exception as e:
     print("Incorrect decryption", e)
