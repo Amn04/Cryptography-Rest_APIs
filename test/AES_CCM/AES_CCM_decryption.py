@@ -13,7 +13,7 @@ args = parser.parse_args()
 
 try:
     json_input=f'''{{"nonce": {args.nonce}, "header": {args.header}, "ciphertext": {args.text}, "tag": {args.text}}}'''
-    key=b'P\xb31eZ"8\x15Mj\xf3\xceU\xb8\xe0\xa2'
+    key=b'\xdd\xf2\x8f\xe8;\x1f\xd8\x17l\xf9\x14b\xd7,\xd3d'
     json_k = [ 'nonce', 'header', 'ciphertext', 'tag' ]
 
     cipher = AES.new(key, AES.MODE_CCM, nonce=b64decode(args.nonce))

@@ -7,7 +7,7 @@ from routes.home import Home
 api = Api(app)
 
 api.add_resource(Home,"/")
-api.add_resource(Aes_encrypt_class,"/symmetric/encrypt/ass")
+api.add_resource(Aes_encrypt_class,"/symmetric/encrypt/aes")
 
 if __name__ == '__main__':
     app.logger.info("Flask App started successfully")
