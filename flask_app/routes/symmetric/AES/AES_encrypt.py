@@ -25,7 +25,9 @@ class Aes_encrypt_class(Resource):
                 return {"message":"Encryption can be done only if data is provide."}, 201
             else:
                 data=data.read()
-                print(type(data))
+
+
+                
                 app.logger.info("Data loaded")
 
             if key == None or key=="" or key==" ":
