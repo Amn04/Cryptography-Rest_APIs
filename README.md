@@ -16,5 +16,5 @@ A open-source project to create Rest APIs for all cryptographic algorithms.
 ## If you want to contribute to this project following rules are to be keep in mind before doing that -
 
 1. Follow best practices of coding. Go through all the code and follow same pattern in your code also which are previously done.
-2. If you are reforctoring the code then less time.
-3. Before adding any feature to flask app you need to create test script first. 
+2. Before adding any feature to flask app you need to create test script first.
+3. Use proper comment if you are changing anything in the code.
