@@ -1,5 +1,3 @@
-from email import header
-from re import M
 from flask import request
 from flask_restful import Resource, reqparse
 import json
@@ -24,10 +22,7 @@ class Aes_encrypt_class(Resource):
             if data == None or data=="" or data==" ":
                 return {"message":"Encryption can be done only if data is provide."}, 201
             else:
-                data=data.read()
-
-
-                
+                data=data.read()  
                 app.logger.info("Data loaded")
 
             if key == None or key=="" or key==" ":

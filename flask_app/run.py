@@ -1,7 +1,7 @@
 from main import app
 from flask_restful import Api
 
-from routes.symmetric.AES.AES_encrypt import Aes_encrypt_class
+from routes.symmetric.AES.AES_CCM.AES_CCM_encrypt import Aes_encrypt_class
 from routes.home import Home
 
 api = Api(app)
