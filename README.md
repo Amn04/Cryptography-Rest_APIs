@@ -13,7 +13,7 @@ A open-source project to create Rest APIs for all cryptographic algorithms.
 5. For flask app use command `python -m run` in flask app directory.
 
 
-## If you want to contribute to this project following rules are to be keep in mind before doing that -
+## If you want to contribute to this project following rules are to be kept in mind before doing that -
 
 1. Follow best practices of coding. Go through all the code and follow same pattern in your code also which are previously done.
 2. Before adding any feature to flask app you need to create test script first.
