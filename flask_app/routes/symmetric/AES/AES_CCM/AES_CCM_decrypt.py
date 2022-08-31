@@ -6,9 +6,14 @@ from Crypto.Cipher import AES
 from main import app
 
 class Aes_decrypt_ccm(Resource):
-    
+
     def get(self):
-        key_state = False
+        '''
+        This is get method API for AES decryption in CCM mode. This function takes nonce,
+        header, cipher text, tag and key as argument in form data. Key should be passed 
+        from file. This use b64decode to decode input recieved from args. It uses pycryto
+        library to then derypt the cipher text and returns the decrypted text.
+        '''
         app.logger.info("Inside decryption class")
         
         try:
@@ -45,7 +50,7 @@ class Aes_decrypt_ccm(Resource):
 
             app.logger.info("Args check successfully")
             
-            cipher = AES.new(key.read(), AES.MODE_CCM, nonce=b64decode(nonce))
+            cipher = AES.new(key, AES.MODE_CCM, nonce=b64decode(nonce))
             cipher.update(b64decode(header))
             plaintext = cipher.decrypt_and_verify(b64decode(cipher_text), b64decode(tag))
 
@@ -56,4 +61,5 @@ class Aes_decrypt_ccm(Resource):
         
         except Exception as e:
             print(e)
+            app.logger.error(f"Error occured - {e}")
             return {'error':'something went wrong'},500

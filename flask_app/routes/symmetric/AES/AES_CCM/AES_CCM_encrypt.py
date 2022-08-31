@@ -1,7 +1,3 @@
-'''
-This file is added by Aman Kumar, for AES encryption in CCM mode. This file
-contains class Aes_encrypt_ccm.
-'''
 from flask import request
 from flask_restful import Resource, reqparse
 import json
@@ -64,11 +60,11 @@ class Aes_encrypt_ccm(Resource):
 
             #Returning key only when if it is not passed in args
             if key_state:
-                return {'message':'Encryption successfull',
+                return {'message':'Encryption successful',
                         'result':result,
                         'key_generated':str(key)},200
             else:
-                return {'message':'Encryption successfull',
+                return {'message':'Encryption successful',
                         'result':result},200
 
         
