@@ -10,7 +10,7 @@ parser.add_argument('--text', type=str, required=True)
 args = parser.parse_args()
 
 try:
-    key=b'\x1c\xba\xf0s\xae>J\xa8\x99\xec\n\xa2\x8d2\xd0\xfc'
+    key=b'\xeb\x8c\x99\xb0\x8e./\xd9A+G:\xa45\xafY'
     iv = b64decode(args.iv)
     ct = b64decode(args.text)
     cipher = AES.new(key, AES.MODE_CBC, iv)
