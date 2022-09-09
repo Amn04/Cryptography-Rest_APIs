@@ -8,7 +8,7 @@ A open-source project to create Rest APIs for all cryptographic algorithms.
 
 1. Clone the project.
 2. Use command `pip install -r requirments.txt`
-3. To run text  cases move to particular directories.
+3. To run example move to particular directories.
 4. Run command `python -m "file_name to run"` to run test scripts. Make sure to be in direcotry.
 5. For flask app use command `python -m run` in flask app directory.
 
