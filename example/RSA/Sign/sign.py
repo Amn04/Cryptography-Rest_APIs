@@ -42,4 +42,9 @@ signature = private_key.sign(
 )
 
 print(message)
-print("Signature: ",signature)
+
+
+with open('signature.txt', 'wb') as f:
+    f.write(signature)
+
+print("Success")
