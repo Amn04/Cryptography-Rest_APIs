@@ -1,8 +1,8 @@
 ''''
-This script is an example script to sign a using RSA. To sign a message one need to use 
-private key. In this example private key need to be supplied by filepath in args.
+This script is an example to sign a message using RSA. To sign a message one needs 
+private key. In this example private key needs to be supplied by filepath in args.
 Message to sign can be either passed using filepath or a string through args.
-If signing will be succeed then it will print the signature.
+If signing is successful then it will print the signature along with success.
 '''
 
 from cryptography.hazmat.primitives import hashes

@@ -9,7 +9,7 @@ class Aes_decrypt_ccm(Resource):
 
     def get(self):
         '''
-        This is get method API for AES decryption in CCM mode. This function takes nonce,
+        This is a get method API for AES decryption in CCM mode. This function takes nonce,
         header, cipher text, tag and key as argument in form data. Key should be passed 
         from file. This use b64decode to decode input recieved from args. It uses pycryto
         library to then derypt the cipher text and returns the decrypted text.
