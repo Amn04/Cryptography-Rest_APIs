@@ -14,6 +14,13 @@ from cryptography.hazmat.backends import default_backend
 class rsa_sign(Resource):
 
     def get(self):
+        '''
+        This is a get method API implemented for RSA signing of message. In this API
+        data and private key should be passed as files in form data. After successfull
+        signing, a success message and signature will be returned. If a error happens 
+        API will return internal server error message.
+        Algorithm for siganture is fixed.
+        '''
         app.logger.info("In rsa_sign class")
         try:
             #Arguments collection
@@ -28,7 +35,7 @@ class rsa_sign(Resource):
                 backend=default_backend()
             )
 
-            app.logger.info("Private key generated")
+            app.logger.info("Private key loaded")
 
             signature = private_key.sign(
                     data.read(),
@@ -43,9 +50,8 @@ class rsa_sign(Resource):
 
             return {"message":"success",
                     "Signature":str(signature)
-            }
+            },200
         except Exception as e:
-            print("Something went wrong ", e)
             app.logger.error(f"Error occured - {e}")
             return {"error":"Internal server error"}, 500
 
