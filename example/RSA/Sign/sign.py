@@ -2,7 +2,9 @@
 This script is an example to sign a message using RSA. To sign a message one needs 
 private key. In this example private key needs to be supplied by filepath in args.
 Message to sign can be either passed using filepath or a string through args.
-If signing is successful then it will print the signature along with success.
+Appropriate hashing algorithm should be paased in args in format hashes.SHA224(),
+hashes.SHA25() etc. If signing is successful then it will print the signature along
+with success.
 '''
 
 from cryptography.hazmat.primitives import hashes
@@ -14,6 +16,7 @@ import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--private_key', type=str, required=True)
+parser.add_argument('--hash_algo', type=str, required=True)
 parser.add_argument('--msg', type=str, required=True)
 args = parser.parse_args()
 
@@ -31,14 +34,16 @@ if isFile:
 else:
     message=bytes(args.msg,'utf-8')
 
+hash_algo=args.hash_algo
 
 signature = private_key.sign(
     message,
+    
     padding.PSS(
-        mgf=padding.MGF1(hashes.SHA256()),
+        mgf=padding.MGF1(eval(hash_algo)),
         salt_length=padding.PSS.MAX_LENGTH
     ),
-    hashes.SHA256()
+    eval(hash_algo)
 )
 
 print(message)
