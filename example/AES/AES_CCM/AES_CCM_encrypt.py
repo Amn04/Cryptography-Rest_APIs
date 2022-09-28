@@ -12,7 +12,13 @@ args = parser.parse_args()
 try:
 
     header = b"header"
-    data = bytes(args.data,'utf-8')
+    isFile = os.path.isfile(args.data)
+    if isFile:
+        with open(args.data, "rb") as msg:
+            data=msg.read()
+    else:
+        data=bytes(args.data,'utf-8')
+
     isFile = os.path.isfile(args.key)
     if isFile:
         with open(args.key, "rb") as k:
