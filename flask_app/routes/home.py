@@ -9,4 +9,4 @@ from main import app
 class Home(Resource):
     
     def get(self):
-        return "Home"
+        return {"This is Home API of cryptography rest api."},200
