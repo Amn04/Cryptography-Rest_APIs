@@ -6,36 +6,34 @@ import argparse
 import os
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--public_key', type=str, required=True)
-parser.add_argument('--msg', type=str, required=True)
+parser.add_argument('--private_key', type=str, required=True)
+parser.add_argument('--cipher_txt', type=str, required=True)
 parser.add_argument('--hash_algo', type=str, required=True)
 args = parser.parse_args()
 
-isFile = os.path.isfile(args.msg)
+isFile = os.path.isfile(args.cipher_txt)
 if isFile:
-    with open(args.msg, "rb") as msg:
-        message=msg.read()
+    with open(args.cipher_txt, "rb") as cipher_txt:
+        ciphertext=cipher_txt.read()
 else:
-    message=bytes(args.msg,'utf-8')
+    print("Invalid file or invalid filepath")
+    exit()
 
-with open(args.public_key, "rb") as key_file:
-    public_key = serialization.load_pem_public_key(
+with open(args.private_key, "rb") as key_file:
+    private_key = serialization.load_pem_private_key(
         key_file.read(),
+        password=None,
         backend=default_backend()
     )
 
 hash_algo=args.hash_algo
 
-ciphertext = public_key.encrypt(
-    message,
+plaintext = private_key.decrypt(
+    ciphertext,
     padding.OAEP(
         mgf=padding.MGF1(algorithm=eval(hash_algo)),
         algorithm=eval(hash_algo),
         label=None
     )
 )
-
-with open('ciphertext.txt', 'wb') as f:
-    f.write(ciphertext)
-
-print("Sucsess")
+print(plaintext)
