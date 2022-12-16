@@ -8,5 +8,8 @@ from main import app
 
 class Home(Resource):
     
+    '''
+    If home api successfully returned, then your app is in running status. 
+    '''
     def get(self):
         return {"This is Home API of cryptography rest api."},200
